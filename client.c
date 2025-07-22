@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschwarz <bschwarz@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: bschwarz <bschwarz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:38:09 by bschwarz          #+#    #+#             */
-/*   Updated: 2025/07/15 12:58:24 by bschwarz         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:30:17 by bschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	send_bits(pid_t pid, char c)
 {
 	int	i;
-	
+
 	i = 7;
 	while (i >= 0)
 	{
@@ -36,7 +36,7 @@ static void	send_string(pid_t pid, char *str)
 	while (str[i])
 	{
 		send_bits(pid, str[i]);
-		i++;	
+		i++;
 	}
 	send_bits(pid, '\0');
 }

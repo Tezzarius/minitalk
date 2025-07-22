@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschwarz <bschwarz@student.42vienna.com    +#+  +:+       +#+        */
+/*   By: bschwarz <bschwarz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:37:56 by bschwarz          #+#    #+#             */
-/*   Updated: 2025/07/15 12:43:15 by bschwarz         ###   ########.fr       */
+/*   Updated: 2025/07/22 13:30:44 by bschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ static void	manage_signal(int sig)
 int	main(void)
 {
 	pid_t	pid;
-	
+
 	pid = getpid();
 	ft_printf("Server PID: %d\n", pid);
-
 	signal(SIGUSR1, manage_signal);
 	signal(SIGUSR2, manage_signal);
-
 	while (1)
 		pause();
 }

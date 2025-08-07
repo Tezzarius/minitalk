@@ -6,7 +6,7 @@
 /*   By: bschwarz <bschwarz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:38:09 by bschwarz          #+#    #+#             */
-/*   Updated: 2025/07/22 13:30:17 by bschwarz         ###   ########.fr       */
+/*   Updated: 2025/08/07 13:05:32 by bschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (1);
 	server_pid = ft_atoi(argv[1]);
+	if (server_pid == -1 || server_pid == 0)
+		return (1);
 	send_string(server_pid, argv[2]);
 	return (0);
 }

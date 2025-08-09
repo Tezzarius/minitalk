@@ -4,7 +4,7 @@ SRC_DIR = .
 OBJ_DIR = obj
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 HEADER = libft.h
 
@@ -74,7 +74,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c $(HEADER)
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)

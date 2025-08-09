@@ -3,6 +3,8 @@ NAME_SERVER = server
 
 MAKEFLAGS += --no-print-directory
 
+GREEN=\033[1;32m
+
 SRC_DIR = src
 OBJ_DIR = obj
 
@@ -24,8 +26,10 @@ all: $(NAME_CLIENT) $(NAME_SERVER)
 
 $(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
+	@echo "$(GREEN) Client compiled!"
 $(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
+	@echo "$(GREEN) Server compiled!"
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
@@ -37,10 +41,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
 clean:
 	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
+	@echo "$(GREEN) Objects removed!"
 
 fclean: clean
 	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
 	@make -C $(LIBFT_DIR) fclean
+	@echo "$(GREEN) Executables removed!"
 
 re: fclean all
 

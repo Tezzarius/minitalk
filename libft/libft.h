@@ -6,7 +6,7 @@
 /*   By: bschwarz <bschwarz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 10:56:49 by bschwarz          #+#    #+#             */
-/*   Updated: 2025/07/23 13:47:25 by bschwarz         ###   ########.fr       */
+/*   Updated: 2025/08/08 16:15:19 by bschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_list
 typedef struct s_dll
 {
 	int				content;
+	int				index;
 	struct s_dll	*prev;
 	struct s_dll	*next;
 }	t_dll;
@@ -91,18 +92,6 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
-
-void	ft_dlladd_beginning(t_dll **tail, int value);
-void	ft_dlladd_end(t_dll **head, int value);
-void	ft_dlldeallocate(t_dll **tail, t_dll **head);
-t_dll	*ft_dllfind_node_rec(t_dll *node, int value);
-t_dll	*ft_dllfind_node(t_dll *tail, int value);
-void	ft_dllinit(t_dll **tail, t_dll **head, int value);
-void	ft_dllinsert_after(t_dll *node, int value);
-void	ft_dlloutput_backward(t_dll *head);
-void	ft_dlloutput_forward(t_dll *tail);
-void	ft_dllremove_node(t_dll *node);
-void	ft_dllreverse(t_dll **tail, t_dll **head);
 
 char	*get_next_line(int fd);
 

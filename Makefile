@@ -1,40 +1,46 @@
 NAME_CLIENT = client
 NAME_SERVER = server
 
+MAKEFLAGS += --no-print-directory
+
+SRC_DIR = src
+OBJ_DIR = obj
+
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 
 HEADER = minitalk.h
 
-SRC_CLIENT = client.c
-SRC_SERVER = server.c
+SRC_CLIENT = $(SRC_DIR)/client.c
+SRC_SERVER = $(SRC_DIR)/server.c
 
-OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
-OBJ_SERVER = $(SRC_SERVER:.c=.o)
+OBJ_CLIENT = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_CLIENT))
+OBJ_SERVER = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_SERVER))
 
 all: $(NAME_CLIENT) $(NAME_SERVER)
 
 $(NAME_CLIENT): $(OBJ_CLIENT) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
+	@$(CC) $(CFLAGS) $(OBJ_CLIENT) $(LIBFT) -o $(NAME_CLIENT)
 $(NAME_SERVER): $(OBJ_SERVER) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
+	@$(CC) $(CFLAGS) $(OBJ_SERVER) $(LIBFT) -o $(NAME_SERVER)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
-%.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
-	make -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME_CLIENT) $(NAME_SERVER)
-	make -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

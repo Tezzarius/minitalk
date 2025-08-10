@@ -6,7 +6,7 @@
 /*   By: bschwarz <bschwarz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:38:09 by bschwarz          #+#    #+#             */
-/*   Updated: 2025/08/09 16:06:01 by bschwarz         ###   ########.fr       */
+/*   Updated: 2025/08/10 12:21:06 by bschwarz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	send_bits(pid_t pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(1000);
+		usleep(200);
 		i--;
 	}
 }
